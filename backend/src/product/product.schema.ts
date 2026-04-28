@@ -24,6 +24,18 @@ export class Product {
 
     @Prop({required: true, default: 0})
     stock!: number;
+
+    @Prop({required: true})
+    brand!: string;
+
+    @Prop({required: true, type: [String]})
+    features!: string[];
+
+    @Prop({required: true})
+    condition!: string;
+
+    @Prop({required: true, default: 0})
+    discount!: number;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product)

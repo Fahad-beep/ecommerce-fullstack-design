@@ -4,6 +4,7 @@ import { ProductService } from './product.service';
 import { ProductController } from './product.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Product, ProductSchema } from './product.schema';
+import { MetadataModule } from 'src/metadata/metadata.module';
 
 @Module({
   controllers: [ProductController],
@@ -11,7 +12,8 @@ import { Product, ProductSchema } from './product.schema';
   imports: [
     MongooseModule.forFeature([{
       name: Product.name, schema: ProductSchema
-    }])
+    }]),
+    MetadataModule
   ]
 })
 export class ProductModule {}
