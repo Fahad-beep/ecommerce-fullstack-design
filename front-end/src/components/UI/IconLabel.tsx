@@ -3,7 +3,7 @@ import { cn } from '../../utils/cn';
 
 interface IconLabelProps {
     icon: React.ElementType;
-    label?: string;
+    label?: React.ReactNode;
     className?: string;
     iconClassName?: string;
     textClassName?: string;
@@ -19,7 +19,7 @@ export const IconLabel = ({
     size
 }: IconLabelProps) => 
   (
-    <div className={cn("flex flex-col items-center", className)}>
+    <div className={cn("flex flex-col items-center cursor-pointer", className)}>
         <div className={cn("", iconClassName)}> <Icon size={size}/> </div>
         <p className={cn("font-sans text-gray-500 text-[12px] font-normal", textClassName)}>{label}</p>
     </div>
