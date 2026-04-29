@@ -14,6 +14,9 @@ import { MetadataModule } from 'src/metadata/metadata.module';
       name: Product.name, schema: ProductSchema
     }]),
     MetadataModule
+  ],
+  exports: [
+    ProductService
   ]
 })
 export class ProductModule {}
