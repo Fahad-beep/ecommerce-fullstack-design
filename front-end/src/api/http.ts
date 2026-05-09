@@ -1,4 +1,4 @@
-const apiBaseUrl = import.meta.env.VITE_API_URL ?? 'http://localhost:3000';
+const apiBaseUrl = import.meta.env.VITE_API_URL ?? 'https://ecommerce-fullstack-design-55z6.vercel.app';
 
 export const apiUrl = (path: string) =>
   `${apiBaseUrl}${path.startsWith('/') ? path : `/${path}`}`;
