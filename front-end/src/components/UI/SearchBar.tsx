@@ -9,12 +9,15 @@ interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
 export const SearchBar = React.forwardRef<HTMLInputElement, InputProps>(
     ({label, error, className, ...props}, ref) => {
   return (
-    <div className='border-[1px] rounded-lg rounded-r-none flex items-center h-[2.5rem]'>
-        {/* #0D6EFD */}
-        <label className='text-sm font-semibold text-gray-700 opacity-50 mx-[1rem]'>{label}</label>
-        <input ref={ref} type="text" className={cn("", className)} {...props}>
-        </input>
-        { error && <span className='font-xs text-red-500'>{error}</span>}
+    <div className='flex h-[2.5rem] items-center overflow-hidden rounded-lg border border-[#DEE2E7] bg-white'>
+        <input
+          ref={ref}
+          type="text"
+          placeholder={label}
+          className={cn("h-full flex-1 bg-transparent px-[1rem] text-sm outline-none placeholder:text-gray-400", className)}
+          {...props}
+        />
+        { error && <span className='font-xs text-red-500 pr-3'>{error}</span>}
     </div>
     )}
 );

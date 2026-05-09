@@ -4,26 +4,26 @@
 import {
   Body,
   Controller,
-  forwardRef,
   Get,
-  Inject,
   Patch,
+  UseGuards,
 } from '@nestjs/common';
-import { UpdateMetadataDto } from 'src/product/dto/update-metadata.dto';
-import { ProductService } from 'src/product/product.service';
+import { UpdateMetadataDto } from '../product/dto/update-metadata.dto';
+import { ProductService } from '../product/product.service';
+import { AdminRoute } from '../auth/auth.decorator';
+import { JwtAuthGuard } from '../auth/auth.guard';
 
 @Controller('metadata')
 export class MetadataController {
-  constructor(
-    @Inject(forwardRef(() => ProductService))
-    private readonly productService: ProductService,
-  ) {}
+  constructor(private readonly productService: ProductService) {}
 
   @Get()
   getMetadata() {
     return this.productService.getMetadata();
   }
 
+  @AdminRoute()
+  @UseGuards(JwtAuthGuard)
   @Patch()
   updateMetadata(@Body() updateDto: UpdateMetadataDto) {
     return this.productService.updateMetadata(updateDto);

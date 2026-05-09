@@ -1,10 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import { Transform, Type } from 'class-transformer';
-import { IsNumber, IsOptional, IsString, Min } from 'class-validator';
+import { IsNumber, IsOptional, IsString, Max, Min } from 'class-validator';
 
 export class CreateProductDto {
-  //price, name, brand, feature, desc, discount, image, category, stock
   @IsNumber()
   @Min(1)
   @Type(() => Number)
@@ -41,5 +40,14 @@ export class CreateProductDto {
 
   @IsNumber()
   @Min(0)
-  discount!: 0;
+  @Max(100)
+  @Type(() => Number)
+  discount!: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  @Max(5)
+  @Type(() => Number)
+  rating?: number;
 }

@@ -5,7 +5,8 @@ import { MetadataService } from './metadata.service';
 import { MetadataController } from './metadata.controller';
 import { MetadataSchema, StoreMetadata } from './metadata.schema';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ProductModule } from 'src/product/product.module';
+import { ProductModule } from '../product/product.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   controllers: [MetadataController],
@@ -18,6 +19,7 @@ import { ProductModule } from 'src/product/product.module';
       },
     ]),
     forwardRef(() => ProductModule),
+    AuthModule,
   ],
   exports: [MongooseModule],
 })

@@ -8,12 +8,15 @@ import {
   Patch,
   Post,
   Query,
+  UseGuards,
 } from '@nestjs/common';
 import { PaginatedProducts, ProductService } from './product.service';
 import { GetProductsFilterDto } from './dto/get-products-filter.dto';
 import { CreateProductDto } from './dto/create-product.dto';
 import { ProductDocument } from './product.schema';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { AdminRoute } from '../auth/auth.decorator';
+import { JwtAuthGuard } from '../auth/auth.guard';
 
 @Controller('product')
 export class ProductController {
@@ -26,6 +29,8 @@ export class ProductController {
     return await this.productService.getProducts(filterDto);
   }
 
+  @AdminRoute()
+  @UseGuards(JwtAuthGuard)
   @Post()
   async createProduct(
     @Body() createProductDto: CreateProductDto,
@@ -38,11 +43,15 @@ export class ProductController {
     return this.productService.getProductById(id);
   }
 
+  @AdminRoute()
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   updateProduct(@Param('id') id: string, @Body() updateData: UpdateProductDto) {
     return this.productService.updateProduct(id, updateData);
   }
 
+  @AdminRoute()
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   deleteProduct(@Param('id') id: string) {
     return this.productService.deleteProduct(id);

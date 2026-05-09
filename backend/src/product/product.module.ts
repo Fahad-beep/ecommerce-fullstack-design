@@ -1,10 +1,11 @@
 /* eslint-disable prettier/prettier */
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { ProductService } from './product.service';
 import { ProductController } from './product.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Product, ProductSchema } from './product.schema';
-import { MetadataModule } from 'src/metadata/metadata.module';
+import { MetadataModule } from '../metadata/metadata.module';
+import { AuthModule } from '../auth/auth.module';
 
 @Module({
   controllers: [ProductController],
@@ -13,7 +14,8 @@ import { MetadataModule } from 'src/metadata/metadata.module';
     MongooseModule.forFeature([{
       name: Product.name, schema: ProductSchema
     }]),
-    MetadataModule
+    forwardRef(() => MetadataModule),
+    AuthModule,
   ],
   exports: [
     ProductService

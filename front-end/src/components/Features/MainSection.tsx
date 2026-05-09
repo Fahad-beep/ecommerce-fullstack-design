@@ -1,4 +1,3 @@
-import React from 'react'
 import IconLabel from '../UI/IconLabel'
 import MainUserCard from '../UI/MainUserCard';
 import GiftCard from '../UI/GiftCard';
@@ -16,15 +15,17 @@ const MainSection = () => {
         "More Category",
     ];
   return (
-    <section className='flex flex-row max-h-[40rem] w-screen justify-center py-[2rem] '>
-        <section className='w-[89%] h-full flex flex-row justify-between bg-white rounded-lg p-5 items-center '>
-            <div className='flex flex-col justify-center items-start gap-y-4 bg-red-500 h-full'>
+    <section className='flex w-full justify-center px-4 py-4 sm:px-6 lg:px-8'>
+        <section className='grid w-full max-w-7xl gap-6 rounded-[2rem] border border-slate-200 bg-white p-4 shadow-sm lg:grid-cols-[220px_1fr_320px] lg:p-6'>
+            <div className='flex flex-row flex-wrap gap-x-4 gap-y-3 lg:flex-col lg:items-start'>
                 {options.map((val) => (
-                    <IconLabel key={val} label={val} textClassName='text-[1rem] font-semibold' />
+                    <IconLabel key={val} label={val} textClassName='text-sm font-semibold text-slate-600' className='rounded-full bg-slate-50 px-4 py-2 lg:bg-transparent lg:px-0 lg:py-0' />
                 ))}
             </div>
-            <div className='self-stretch w-[30rem] bg-amber-600 rounded-md'></div>
-            <div className='flex flex-col w-[20rem] h-full gap-2'>
+            <div className='overflow-hidden rounded-[1.75rem] bg-amber-600'>
+                <img src="./MainSectionBanner.jpg" alt="Main Section Banner" className='h-full w-full object-cover'/>
+            </div>
+            <div className='flex flex-col gap-3'>
                 <MainUserCard />
                 <GiftCard className='bg-[#F38332]' text='Get US $10 Off With A New Supplier'/>
                 <GiftCard className='bg-[#55BDC3]' text='Send Qoutes With Supplier Preferences'/>

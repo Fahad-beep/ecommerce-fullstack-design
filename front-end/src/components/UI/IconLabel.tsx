@@ -21,7 +21,7 @@ export const IconLabel = ({
   (
     <div className={cn("flex flex-col items-center cursor-pointer", className)}>
         {Icon && (<div className={cn("", iconClassName)}> <Icon size={size}/> </div>) }
-        <p className={cn("font-sans text-gray-500 text-[12px] font-normal", textClassName)}>{label}</p>
+        <div className={cn("font-sans text-gray-500 text-[12px] font-normal", textClassName)}>{label}</div>
     </div>
   )
 

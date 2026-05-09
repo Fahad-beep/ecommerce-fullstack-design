@@ -36,6 +36,9 @@ export class Product {
 
     @Prop({required: true, default: 0})
     discount!: number;
+
+    @Prop({ required: false, default: 4.5 })
+    rating?: number;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product)
